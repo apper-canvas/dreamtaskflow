@@ -10,7 +10,7 @@ const TaskList = ({
   onToggleComplete, 
   onEditTask, 
   onDeleteTask,
-  onCreateTask 
+  onCreateTask
 }) => {
   // Ensure props are defined with fallback to empty arrays
   const safeTasks = tasks || []
@@ -89,9 +89,9 @@ const TaskList = ({
   return (
     <div className="space-y-4">
       <AnimatePresence mode="popLayout">
-        {filteredTasks.map((task) => (
+{filteredTasks.map((task) => (
           <motion.div
-            key={task.id}
+            key={task.Id || task.id}
             layout
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

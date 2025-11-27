@@ -36,7 +36,10 @@ export function useTasks() {
     try {
       setError("")
       const newTask = await taskService.create(taskData)
-      setTasks(prev => [...prev, newTask])
+setTasks(prev => {
+        const updatedTasks = [...prev, newTask]
+        return updatedTasks
+      })
       toast.success("Task created successfully!")
       return newTask
     } catch (err) {

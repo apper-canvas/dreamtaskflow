@@ -22,7 +22,7 @@ const TaskDashboard = () => {
 
   // Calculate task counts for sidebar
   const taskCounts = useMemo(() => {
-    const allTasks = tasks.filter(task => !task.completed)
+const allTasks = tasks
     const completedTasks = tasks.filter(task => task.completed)
     const todayTasks = filterTasksByDate(tasks, "today")
     const upcomingTasks = filterTasksByDate(tasks, "upcoming")
@@ -154,8 +154,9 @@ const TaskDashboard = () => {
             />
 
             {/* Task List */}
-            <TaskList
+<TaskList
               tasks={tasks}
+              allTasks={allTasks}
               currentFilter={currentFilter}
               onToggleComplete={toggleComplete}
               onEditTask={handleEditTask}
