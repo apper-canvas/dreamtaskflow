@@ -1,9 +1,10 @@
 import { useMemo } from "react"
 import ApperIcon from "@/components/ApperIcon"
 import Badge from "@/components/atoms/Badge"
+import Input from "@/components/atoms/Input"
 import { filterTasksByDate } from "@/utils/dateUtils"
 
-const TaskHeader = ({ tasks, currentFilter }) => {
+const TaskHeader = ({ tasks, currentFilter, searchTerm, onSearchChange }) => {
   const taskCounts = useMemo(() => {
     const allTasks = tasks.filter(task => !task.completed)
     const completedTasks = tasks.filter(task => task.completed)
@@ -100,7 +101,7 @@ const TaskHeader = ({ tasks, currentFilter }) => {
   const headerInfo = getHeaderInfo()
 
   return (
-    <div className="flex items-center justify-between mb-8">
+<div className="flex items-center justify-between mb-8">
       <div className="flex items-center space-x-4">
         <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${headerInfo.gradient} flex items-center justify-center shadow-lg`}>
           <ApperIcon name={headerInfo.icon} className="w-6 h-6 text-white" />
@@ -115,15 +116,27 @@ const TaskHeader = ({ tasks, currentFilter }) => {
         </div>
       </div>
 
-      <div className="flex items-center space-x-3">
-        <Badge variant="primary" className="px-3 py-1 text-sm">
-          <ApperIcon name="CheckCircle2" className="w-4 h-4 mr-1" />
-          {taskCounts.completed} completed
-        </Badge>
-        <Badge variant="default" className="px-3 py-1 text-sm">
-          <ApperIcon name="Clock" className="w-4 h-4 mr-1" />
-          {taskCounts.all} active
-        </Badge>
+      <div className="flex items-center space-x-4">
+        <div className="relative">
+          <ApperIcon name="Search" className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <Input
+            type="text"
+            placeholder="Search tasks..."
+            value={searchTerm}
+            onChange={(e) => onSearchChange(e.target.value)}
+            className="pl-9 w-64 h-9 text-sm bg-white border-gray-200 focus:border-primary-500 focus:ring-primary-500"
+          />
+        </div>
+        <div className="flex items-center space-x-3">
+          <Badge variant="primary" className="px-3 py-1 text-sm">
+            <ApperIcon name="CheckCircle2" className="w-4 h-4 mr-1" />
+            {taskCounts.completed} completed
+          </Badge>
+          <Badge variant="default" className="px-3 py-1 text-sm">
+            <ApperIcon name="Clock" className="w-4 h-4 mr-1" />
+            {taskCounts.all} active
+          </Badge>
+        </div>
       </div>
     </div>
   )

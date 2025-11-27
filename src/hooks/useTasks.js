@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import taskService from "@/services/api/taskService"
 import { toast } from "react-toastify"
 
@@ -6,7 +6,18 @@ export function useTasks() {
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
+  const [searchTerm, setSearchTerm] = useState("")
 
+  // Debounced search with useMemo for performance
+  const filteredTasks = useMemo(() => {
+    if (!searchTerm.trim()) return tasks
+    
+    const lowercaseSearch = searchTerm.toLowerCase().trim()
+    return tasks.filter(task => 
+      task.title?.toLowerCase().includes(lowercaseSearch) ||
+      task.description?.toLowerCase().includes(lowercaseSearch)
+    )
+  }, [tasks, searchTerm])
   const loadTasks = async () => {
     try {
       setError("")
@@ -96,10 +107,13 @@ export function useTasks() {
     loadTasks()
   }, [])
 
-  return {
-    tasks,
+return {
+    tasks: filteredTasks,
+    allTasks: tasks,
     loading,
     error,
+    searchTerm,
+    setSearchTerm,
     createTask,
     updateTask,
     deleteTask,

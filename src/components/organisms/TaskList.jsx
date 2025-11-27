@@ -5,6 +5,7 @@ import { filterTasksByDate } from "@/utils/dateUtils"
 
 const TaskList = ({ 
   tasks, 
+  allTasks,
   currentFilter, 
   onToggleComplete, 
   onEditTask, 
@@ -12,12 +13,23 @@ const TaskList = ({
   onCreateTask 
 }) => {
   // Filter tasks based on current filter
-  const getFilteredTasks = () => {
+const getFilteredTasks = () => {
+    // Use allTasks for category/date filtering, then apply search on top
+    let baseTasks = allTasks
+    
     if (currentFilter.type === "category") {
-      return tasks.filter(task => task.category === currentFilter.value)
+      baseTasks = allTasks.filter(task => task.category === currentFilter.value)
+    } else {
+      baseTasks = filterTasksByDate(allTasks, currentFilter.type)
     }
     
-    return filterTasksByDate(tasks, currentFilter.type)
+    // If tasks prop is already filtered by search, filter the base tasks by search term
+    if (tasks.length !== allTasks.length) {
+      const searchedIds = new Set(tasks.map(t => t.Id || t.id))
+      return baseTasks.filter(task => searchedIds.has(task.Id || task.id))
+    }
+    
+    return baseTasks
   }
 
   const filteredTasks = getFilteredTasks()
