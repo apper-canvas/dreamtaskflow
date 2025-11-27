@@ -160,8 +160,8 @@ const scrollToTop = () => {
             />
 
             {/* Task Creation Modal */}
-            <TaskCreateForm 
-              isOpen={isCreateModalOpen}
+<TaskCreateForm 
+              isOpen={false}
               onClose={handleCloseCreateModal}
               onSubmit={handleCreateTask}
               isSubmitting={isSubmitting}
