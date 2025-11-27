@@ -20,9 +20,9 @@ const TaskDashboard = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
 
-  // Calculate task counts for sidebar
+// Calculate task counts for sidebar
+  const allTasks = tasks
   const taskCounts = useMemo(() => {
-const allTasks = tasks
     const completedTasks = tasks.filter(task => task.completed)
     const todayTasks = filterTasksByDate(tasks, "today")
     const upcomingTasks = filterTasksByDate(tasks, "upcoming")
