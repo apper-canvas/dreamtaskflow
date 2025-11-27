@@ -92,6 +92,9 @@ export const isDueToday = (dateString) => {
 }
 
 export const filterTasksByDate = (tasks, filterType) => {
+  // Handle undefined/null tasks parameter
+  if (!tasks) return []
+  
   const today = startOfDay(new Date())
   
   switch (filterType) {
