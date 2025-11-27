@@ -19,7 +19,7 @@ const TaskDashboard = () => {
   const [deletingTask, setDeletingTask] = useState(null)
 const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
 // Calculate task counts for sidebar
   const allTasks = tasks
