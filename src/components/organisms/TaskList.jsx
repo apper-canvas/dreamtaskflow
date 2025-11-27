@@ -12,21 +12,25 @@ const TaskList = ({
   onDeleteTask,
   onCreateTask 
 }) => {
+  // Ensure props are defined with fallback to empty arrays
+  const safeTasks = tasks || []
+  const safeAllTasks = allTasks || []
+  
   // Filter tasks based on current filter
-const getFilteredTasks = () => {
+  const getFilteredTasks = () => {
     // Use allTasks for category/date filtering, then apply search on top
-    let baseTasks = allTasks
+    let baseTasks = safeAllTasks
     
-    if (currentFilter.type === "category") {
-      baseTasks = allTasks.filter(task => task.category === currentFilter.value)
-    } else {
-      baseTasks = filterTasksByDate(allTasks, currentFilter.type)
+    if (currentFilter?.type === "category") {
+      baseTasks = safeAllTasks.filter(task => task?.category === currentFilter.value)
+    } else if (currentFilter?.type) {
+      baseTasks = filterTasksByDate(safeAllTasks, currentFilter.type)
     }
     
     // If tasks prop is already filtered by search, filter the base tasks by search term
-    if (tasks.length !== allTasks.length) {
-      const searchedIds = new Set(tasks.map(t => t.Id || t.id))
-      return baseTasks.filter(task => searchedIds.has(task.Id || task.id))
+    if (safeTasks.length !== safeAllTasks.length) {
+      const searchedIds = new Set(safeTasks.map(t => t?.Id || t?.id))
+      return baseTasks.filter(task => searchedIds.has(task?.Id || task?.id))
     }
     
     return baseTasks
