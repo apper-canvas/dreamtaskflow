@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Toast Notifications */
+@import 'react-toastify/dist/ReactToastify.css';
+
+.Toastify__toast-container {
+  @apply !top-4 !right-4;
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  @apply !bg-white !text-gray-900 !rounded-lg !shadow-lg !border !border-gray-200;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  padding: 12px 16px;
+  min-height: auto;
+}
+
+.Toastify__toast--success {
+  @apply !bg-green-50 !text-green-800 !border-green-200;
+}
+
+.Toastify__toast--error {
+  @apply !bg-red-50 !text-red-800 !border-red-200;
+}
+
+.Toastify__toast--warning {
+  @apply !bg-yellow-50 !text-yellow-800 !border-yellow-200;
+}
+
+.Toastify__progress-bar {
+  @apply !bg-primary-500;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(203 213 225) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(203 213 225);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(148 163 184);
+}
+
+/* Animation utilities */
+.task-card-hover {
+  transition: all 0.2s ease-out;
+}
+
+.task-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.completion-animation {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.checkmark-animation {
+  animation: checkmark 0.4s ease-out;
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "Id": 1,
+    "id": "task-1",
+    "title": "Review project proposal",
+    "description": "Go through the Q4 project proposal and provide feedback on timeline and resource allocation",
+    "category": "work",
+    "priority": "high",
+    "dueDate": "2024-01-15T09:00:00.000Z",
+    "completed": false,
+    "completedAt": null,
+    "createdAt": "2024-01-10T08:30:00.000Z",
+    "updatedAt": "2024-01-10T08:30:00.000Z"
+  },
+  {
+    "Id": 2,
+    "id": "task-2",
+    "title": "Buy groceries",
+    "description": "Milk, bread, eggs, vegetables for the week",
+    "category": "shopping",
+    "priority": "medium",
+    "dueDate": "2024-01-14T18:00:00.000Z",
+    "completed": false,
+    "completedAt": null,
+    "createdAt": "2024-01-10T09:15:00.000Z",
+    "updatedAt": "2024-01-10T09:15:00.000Z"
+  },
+  {
+    "Id": 3,
+    "id": "task-3",
+    "title": "Schedule dentist appointment",
+    "description": "Call Dr. Smith's office to schedule routine cleaning",
+    "category": "health",
+    "priority": "medium",
+    "dueDate": "2024-01-16T10:00:00.000Z",
+    "completed": false,
+    "completedAt": null,
+    "createdAt": "2024-01-10T10:00:00.000Z",
+    "updatedAt": "2024-01-10T10:00:00.000Z"
+  },
+  {
+    "Id": 4,
+    "id": "task-4",
+    "title": "Update resume",
+    "description": "Add recent project experience and update contact information",
+    "category": "personal",
+    "priority": "low",
+    "dueDate": "2024-01-20T12:00:00.000Z",
+    "completed": true,
+    "completedAt": "2024-01-11T14:30:00.000Z",
+    "createdAt": "2024-01-08T16:20:00.000Z",
+    "updatedAt": "2024-01-11T14:30:00.000Z"
+  },
+  {
+    "Id": 5,
+    "id": "task-5",
+    "title": "Team meeting preparation",
+    "description": "Prepare slides for weekly team standup, review action items from last week",
+    "category": "work",
+    "priority": "high",
+    "dueDate": "2024-01-13T14:00:00.000Z",
+    "completed": false,
+    "completedAt": null,
+    "createdAt": "2024-01-11T09:00:00.000Z",
+    "updatedAt": "2024-01-11T09:00:00.000Z"
+  },
+  {
+    "Id": 6,
+    "id": "task-6",
+    "title": "Clean garage",
+    "description": "Organize tools and donate items we no longer need",
+    "category": "personal",
+    "priority": "low",
+    "dueDate": "2024-01-21T15:00:00.000Z",
+    "completed": false,
+    "completedAt": null,
+    "createdAt": "2024-01-11T11:30:00.000Z",
+    "updatedAt": "2024-01-11T11:30:00.000Z"
+  }
+]
