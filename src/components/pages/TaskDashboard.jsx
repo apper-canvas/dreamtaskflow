@@ -17,8 +17,9 @@ const TaskDashboard = () => {
   const [currentFilter, setCurrentFilter] = useState({ type: "today", value: null })
   const [editingTask, setEditingTask] = useState(null)
   const [deletingTask, setDeletingTask] = useState(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
 // Calculate task counts for sidebar
   const allTasks = tasks
@@ -84,10 +85,17 @@ const TaskDashboard = () => {
     }
   }
 
-  const scrollToTop = () => {
+const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
+  const handleOpenCreateModal = () => {
+    setIsCreateModalOpen(true)
+  }
+
+  const handleCloseCreateModal = () => {
+    setIsCreateModalOpen(false)
+  }
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
@@ -145,14 +153,19 @@ const TaskDashboard = () => {
         <div className="flex-1 p-8">
           <div className="max-w-5xl mx-auto space-y-8">
             {/* Header */}
-            <TaskHeader tasks={tasks} currentFilter={currentFilter} />
+<TaskHeader 
+              tasks={tasks} 
+              currentFilter={currentFilter}
+              onOpenCreateModal={handleOpenCreateModal}
+            />
 
-            {/* Task Creation Form */}
+            {/* Task Creation Modal */}
             <TaskCreateForm 
+              isOpen={isCreateModalOpen}
+              onClose={handleCloseCreateModal}
               onSubmit={handleCreateTask}
               isSubmitting={isSubmitting}
             />
-
             {/* Task List */}
 <TaskList
               tasks={tasks}

@@ -1,10 +1,10 @@
-import { useMemo } from "react"
-import ApperIcon from "@/components/ApperIcon"
-import Badge from "@/components/atoms/Badge"
-import Input from "@/components/atoms/Input"
-import { filterTasksByDate } from "@/utils/dateUtils"
+import React, { useMemo } from "react";
+import ApperIcon from "@/components/ApperIcon";
+import Input from "@/components/atoms/Input";
+import Badge from "@/components/atoms/Badge";
+import { filterTasksByDate } from "@/utils/dateUtils";
 
-const TaskHeader = ({ tasks, currentFilter, searchTerm, onSearchChange }) => {
+const TaskHeader = ({ tasks, currentFilter, searchTerm, onSearchChange, onOpenCreateModal }) => {
   const taskCounts = useMemo(() => {
     const allTasks = tasks.filter(task => !task.completed)
     const completedTasks = tasks.filter(task => task.completed)
@@ -102,43 +102,51 @@ const TaskHeader = ({ tasks, currentFilter, searchTerm, onSearchChange }) => {
 
   return (
 <div className="flex items-center justify-between mb-8">
-      <div className="flex items-center space-x-4">
-        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${headerInfo.gradient} flex items-center justify-center shadow-lg`}>
-          <ApperIcon name={headerInfo.icon} className="w-6 h-6 text-white" />
+    <div className="flex items-center space-x-4">
+        <div
+            className={`w-12 h-12 rounded-xl bg-gradient-to-br ${headerInfo.gradient} flex items-center justify-center shadow-lg`}>
+            <ApperIcon name={headerInfo.icon} className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            {headerInfo.title}
-          </h1>
-          <p className="text-gray-600 text-sm mt-1">
-            {headerInfo.subtitle}
-          </p>
+            <h1
+                className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                {headerInfo.title}
+            </h1>
+            <p className="text-gray-600 text-sm mt-1">
+                {headerInfo.subtitle}
+            </p>
         </div>
-      </div>
-
-      <div className="flex items-center space-x-4">
+    </div>
+    <div className="flex items-center space-x-4">
         <div className="relative">
-          <ApperIcon name="Search" className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          <Input
-            type="text"
-            placeholder="Search tasks..."
-            value={searchTerm}
-            onChange={(e) => onSearchChange(e.target.value)}
-            className="pl-9 w-64 h-9 text-sm bg-white border-gray-200 focus:border-primary-500 focus:ring-primary-500"
-          />
+            <ApperIcon
+                name="Search"
+                className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Input
+                type="text"
+                placeholder="Search tasks..."
+                value={searchTerm}
+                onChange={e => onSearchChange(e.target.value)}
+                className="pl-9 w-64 h-9 text-sm bg-white border-gray-200 focus:border-primary-500 focus:ring-primary-500" />
         </div>
         <div className="flex items-center space-x-3">
-          <Badge variant="primary" className="px-3 py-1 text-sm">
-            <ApperIcon name="CheckCircle2" className="w-4 h-4 mr-1" />
-            {taskCounts.completed} completed
-          </Badge>
-          <Badge variant="default" className="px-3 py-1 text-sm">
-            <ApperIcon name="Clock" className="w-4 h-4 mr-1" />
-            {taskCounts.all} active
-          </Badge>
+            <Badge variant="primary" className="px-3 py-1 text-sm">
+                <ApperIcon name="CheckCircle2" className="w-4 h-4 mr-1" />
+                {taskCounts.completed}completed
+                          </Badge>
+            <Badge variant="default" className="px-3 py-1 text-sm">
+                <ApperIcon name="Clock" className="w-4 h-4 mr-1" />
+                {taskCounts.all}active
+                          </Badge>
         </div>
-      </div>
     </div>
+    <button
+        onClick={onOpenCreateModal}
+        className="ml-4 px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium rounded-lg transition-colors duration-200 flex items-center space-x-2 shadow-md hover:shadow-lg">
+        <ApperIcon name="Plus" className="w-4 h-4" />
+        <span>New Task</span>
+    </button>
+</div>
   )
 }
 
